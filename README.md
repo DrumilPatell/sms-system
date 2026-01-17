@@ -1,181 +1,139 @@
-# Student Management System
+# EduManage - Student Management System
 
-Production-grade Full-Stack Student Management System with OAuth 2.0 authentication, role-based access control, and modern UI.
+Modern full-stack student management system with OAuth authentication, role-based access control, and comprehensive academic tracking.
 
-## 🎯 Overview
-
-A complete student management system built with modern technologies, featuring OAuth authentication (Google, Microsoft, GitHub), role-based dashboards, and comprehensive academic management tools.
-
-## 🚀 Tech Stack
-
-### Backend
-- **Framework**: FastAPI (Python)
-- **Database**: PostgreSQL
-- **ORM**: SQLAlchemy
-- **Authentication**: OAuth 2.0 + JWT
-- **Validation**: Pydantic
-
-### Frontend
-- **Framework**: React 18 + Vite
-- **Styling**: Tailwind CSS
-- **State**: Zustand
-- **API**: Axios + TanStack Query
-- **Routing**: React Router v6
-
-## ✨ Features
-
-### Authentication & Security
-- OAuth 2.0 login (Google, Microsoft, GitHub)
-- JWT token-based sessions
-- Role-based access control (Admin, Faculty, Student)
-- Automatic role assignment based on email
-- Secure API endpoints
-
-### Admin Features
-- User management (CRUD)
-- Student profile management
-- Course catalog management
-- Enrollment management
-- System overview dashboard
-
-### Faculty Features
-- Course management
-- Student tracking
-- Attendance marking
-- Grade entry and management
-- Faculty-specific dashboard
-
-### Student Features
-- Personal profile view
-- Enrolled courses
-- Grade viewing
-- Attendance records
-- Student dashboard
-
-## 🛠️ Setup Instructions
+## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.9+
+- Python 3.11+
 - Node.js 18+
-- PostgreSQL 13+
-- OAuth credentials from Google/Microsoft/GitHub
+- PostgreSQL 14+
 
-### Quick Start
+### Installation
 
-1. **Clone and setup the project**
-2. **Configure OAuth** - See [QUICK_START_OAUTH.md](./QUICK_START_OAUTH.md) for fast setup
-3. **Run the application**
+**1. Clone & Setup**
+```bash
+git clone https://github.com/DrumilPatell/sms-system.git
+cd edumanage-sms
+```
 
-### Detailed Backend Setup
-
-1. **Navigate to backend directory**
+**2. Backend Setup**
 ```bash
 cd backend
-```
-
-2. **Create virtual environment**
-```bash
 python -m venv venv
-.\venv\Scripts\activate  # Windows
-```
-
-3. **Install dependencies**
-```bash
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-4. **Create PostgreSQL database**
-```sql
-CREATE DATABASE sms_db;
+Create `.env` file:
+```env
+DATABASE_URL=postgresql+pg8000://postgres:password@localhost:5432/edumanage_db
+SECRET_KEY=your-secret-key-min-32-characters
+FRONTEND_URL=http://localhost:5173
 ```
 
-5. **Configure environment**
+Initialize database:
 ```bash
-cp .env.example .env
-# Edit .env with your configuration
+python init_db.py
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-6. **Run the backend**
-```bash
-uvicorn main:app --reload
-```
-
-Backend runs at: http://localhost:8000
-API docs at: http://localhost:8000/api/docs
-
-### Frontend Setup
-
-1. **Navigate to frontend directory**
+**3. Frontend Setup**
 ```bash
 cd frontend
-```
-
-2. **Install dependencies**
-```bash
 npm install
-```
-
-3. **Configure environment**
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-4. **Run the frontend**
-```bash
 npm run dev
 ```
 
-Frontend runs at: http://localhost:5173
+Visit `http://localhost:5173`
 
-## 🔐 OAuth Configuration
+## 🎯 Features
 
-**IMPORTANT**: You must set up OAuth credentials before you can log in.
+### Authentication
+- OAuth 2.0 (Google, Microsoft, GitHub)
+- Email/Password registration
+- JWT token sessions
+- Auto role assignment
 
-### Quick Setup
-See **[QUICK_START_OAUTH.md](./QUICK_START_OAUTH.md)** for step-by-step guide to get started in 5 minutes.
+### Role-Based Dashboards
+- **Admin**: User/student/course/enrollment management
+- **Faculty**: Course management, attendance, grading
+- **Student**: View courses, grades, attendance
 
-### Detailed Guide
-See **[OAUTH_SETUP.md](./OAUTH_SETUP.md)** for comprehensive setup instructions with all providers.
+### Core Functions
+- Student profile management
+- Course catalog & enrollment
+- Attendance tracking
+- Grade management
+- Real-time updates
 
-### Summary
-1. Register your app with Google, Microsoft, or GitHub
-2. Get Client ID and Client Secret
-3. Update `backend/.env` with your credentials
-4. Restart the backend server
-5. Login should now work!
+## 🛠️ Tech Stack
 
-**Redirect URIs to use**:
-- Google: `http://127.0.0.1:8000/api/auth/google/callback`
-- Microsoft: `http://127.0.0.1:8000/api/auth/microsoft/callback`
-- GitHub: `http://127.0.0.1:8000/api/auth/github/callback`
+**Backend**: FastAPI, PostgreSQL, SQLAlchemy, OAuth 2.0  
+**Frontend**: React, Vite, Tailwind CSS, Zustand, Axios
 
-## 📊 Database Schema
+## 📁 Project Structure
 
-### Core Tables
-- **users** - User accounts with OAuth info
-- **students** - Student profiles and academic data
-- **courses** - Course catalog
-- **enrollments** - Student-course relationships
-- **attendance** - Attendance tracking
-- **grades** - Academic assessments
+```
+edumanage-sms/
+├── backend/
+│   ├── app/
+│   │   ├── api/         # API endpoints
+│   │   ├── auth/        # OAuth & auth logic
+│   │   ├── core/        # Config & security
+│   │   ├── db/          # Models & database
+│   │   └── schemas/     # Pydantic schemas
+│   ├── main.py          # FastAPI app
+│   └── init_db.py       # DB initialization
+│
+└── frontend/
+    └── src/
+        ├── components/  # Reusable components
+        ├── pages/       # Route pages
+        ├── layouts/     # Dashboard layout
+        ├── services/    # API services
+        └── store/       # State management
+```
 
-## 🎨 UI Design
+## 🔧 Configuration
 
-### Design Principles
-- Clean and minimal aesthetic
-- Responsive mobile-first design
-- Consistent color scheme
-- Intuitive navigation
-- Role-based layouts
+### OAuth Setup (Optional)
+Add to backend `.env`:
+```env
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+GOOGLE_REDIRECT_URI=http://localhost:8000/api/auth/google/callback
+```
 
-### Color Palette
-- Primary: Blue (#0ea5e9)
-- Success: Green (#10b981)
-- Warning: Yellow (#f59e0b)
-- Danger: Red (#ef4444)
+Add to frontend `.env`:
+```env
+VITE_API_URL=http://localhost:8000/api
+VITE_GOOGLE_CLIENT_ID=your-google-client-id
+```
 
-## 🔒 Security Features
+## 📝 API Documentation
+
+Visit `http://localhost:8000/api/docs` for interactive API documentation.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push to branch (`git push origin feature/amazing`)
+5. Open Pull Request
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 👥 Author
+
+**Drumil Patel** - [GitHub](https://github.com/DrumilPatell)
+
+---
+
+**Repository**: [sms-system](https://github.com/DrumilPatell/sms-system)
 
 - OAuth 2.0 authentication
 - JWT token-based sessions
