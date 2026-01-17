@@ -72,28 +72,6 @@ Visit `http://localhost:5173`
 **Backend**: FastAPI, PostgreSQL, SQLAlchemy, OAuth 2.0  
 **Frontend**: React, Vite, Tailwind CSS, Zustand, Axios
 
-## 📁 Project Structure
-
-```
-edumanage-sms/
-├── backend/
-│   ├── app/
-│   │   ├── api/         # API endpoints
-│   │   ├── auth/        # OAuth & auth logic
-│   │   ├── core/        # Config & security
-│   │   ├── db/          # Models & database
-│   │   └── schemas/     # Pydantic schemas
-│   ├── main.py          # FastAPI app
-│   └── init_db.py       # DB initialization
-│
-└── frontend/
-    └── src/
-        ├── components/  # Reusable components
-        ├── pages/       # Route pages
-        ├── layouts/     # Dashboard layout
-        ├── services/    # API services
-        └── store/       # State management
-```
 
 ## 🔧 Configuration
 
@@ -111,10 +89,6 @@ VITE_API_URL=http://localhost:8000/api
 VITE_GOOGLE_CLIENT_ID=your-google-client-id
 ```
 
-## 📝 API Documentation
-
-Visit `http://localhost:8000/api/docs` for interactive API documentation.
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -123,53 +97,10 @@ Visit `http://localhost:8000/api/docs` for interactive API documentation.
 4. Push to branch (`git push origin feature/amazing`)
 5. Open Pull Request
 
-## 📄 License
-
-MIT License - see LICENSE file for details.
 
 ## 👥 Author
 
 **Drumil Patel** - [GitHub](https://github.com/DrumilPatell)
-
----
-
-**Repository**: [sms-system](https://github.com/DrumilPatell/sms-system)
-
-- OAuth 2.0 authentication
-- JWT token-based sessions
-- Password hashing (bcrypt)
-- Role-based access control
-- SQL injection prevention (ORM)
-- CORS protection
-- Input validation
-- Secure HTTP headers
-
-## 📝 API Endpoints
-
-### Authentication
-- `POST /api/auth/oauth/login` - OAuth login
-- `GET /api/auth/me` - Get current user
-
-### Users (Admin)
-- `GET /api/users/` - List users
-- `PATCH /api/users/{id}` - Update user
-- `DELETE /api/users/{id}` - Delete user
-
-### Students (Faculty+)
-- `GET /api/students/` - List students
-- `POST /api/students/` - Create student
-- `PATCH /api/students/{id}` - Update student
-
-### Courses
-- `GET /api/courses/` - List courses
-- `POST /api/courses/` - Create course
-- `PATCH /api/courses/{id}` - Update course
-
-### Academic (Faculty+)
-- `GET /api/academic/attendance/` - Get attendance
-- `POST /api/academic/attendance/` - Mark attendance
-- `GET /api/academic/grades/` - Get grades
-- `POST /api/academic/grades/` - Add grade
 
 ## 🚀 Deployment
 
@@ -198,25 +129,3 @@ MIT License - see LICENSE file for details.
 - [ ] Advanced search and filtering
 - [ ] Data export (CSV, PDF)
 - [ ] Dark mode
-
-## 🤝 Contributing
-
-This is a demonstration project. Feel free to fork and customize for your needs.
-
-## 📄 License
-
-MIT License - Feel free to use this project for learning or production.
-
-## 👨‍💻 Author
-
-Built as a production-ready, resume-worthy full-stack project demonstrating:
-- Modern web development practices
-- OAuth 2.0 implementation
-- RESTful API design
-- Role-based access control
-- Clean code architecture
-- Responsive UI design
-
-## 📞 Support
-
-For issues or questions, please refer to the individual README files in the `backend/` and `frontend/` directories.
