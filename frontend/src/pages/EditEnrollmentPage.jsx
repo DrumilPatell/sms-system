@@ -175,7 +175,7 @@ export default function EditEnrollmentPage() {
 
           {mutation.isSuccess && (
             <div className="p-4 bg-green-500/10 border border-green-500/50 rounded-lg">
-              <p className="text-green-400 text-sm">Enrollment updated successfully! Redirecting...</p>
+              <p className="text-green-400 text-sm">Enrollment updated successfully! </p>
             </div>
           )}
 

@@ -187,7 +187,7 @@ export default function EditCoursePage() {
 
           {mutation.isSuccess && (
             <div className="p-4 bg-green-500/10 border border-green-500/50 rounded-lg">
-              <p className="text-green-400 text-sm">Course updated successfully! Redirecting...</p>
+              <p className="text-green-400 text-sm">Course updated successfully!</p>
             </div>
           )}
 
