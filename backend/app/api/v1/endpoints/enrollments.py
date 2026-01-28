@@ -174,6 +174,7 @@ async def get_student_enrollments(
         enrollment_dict.update({
             "student_name": enrollment.student.user.full_name,
             "student_email": enrollment.student.user.email,
+            "student_code": enrollment.student.student_id,
             "course_name": enrollment.course.course_name,
             "course_code": enrollment.course.course_code
         })

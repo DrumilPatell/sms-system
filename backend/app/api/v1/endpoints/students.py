@@ -15,10 +15,11 @@ async def get_students(
     skip: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=100),
     program: Optional[str] = None,
-    current_semester: Optional[int] = None,
+    current_semester: Optional[str] = None,
     db: Session = Depends(get_db),
     current_user: User = Depends(require_faculty)
 ):
+    print(f"[DEBUG] get_students called by user: {current_user.email}, role: {current_user.role}")
     query = db.query(Student).join(User)
     
     if program:
@@ -27,6 +28,7 @@ async def get_students(
         query = query.filter(Student.current_semester == current_semester)
     
     students = query.offset(skip).limit(limit).all()
+    print(f"[DEBUG] Found {len(students)} students in database")
     
     result = []
     for student in students:
@@ -39,6 +41,7 @@ async def get_students(
         })
         result.append(StudentWithUser(**student_dict))
     
+    print(f"[DEBUG] Returning {len(result)} students")
     return result
 
 

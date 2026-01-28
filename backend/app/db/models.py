@@ -45,7 +45,7 @@ class Student(Base):
     
     enrollment_year = Column(Integer, nullable=True)
     program = Column(String(100), nullable=True)  # e.g., "Computer Science", "Engineering"
-    current_semester = Column(Integer, nullable=True)
+    current_semester = Column(String(50), nullable=True)  # e.g., "Fall 2024", "Spring 2025"
     gpa = Column(Float, nullable=True)
     
     created_at = Column(DateTime(timezone=True), server_default=func.now())

@@ -18,9 +18,10 @@ export default function EditStudentPage() {
     enrollment_date: '',
     program: '',
     year_level: '',
+    current_semester: '',
     gpa: '',
     gpa_scale: 'us'
-  })
+  });
 
   const [errors, setErrors] = useState({})
   const [displayDOB, setDisplayDOB] = useState('')
@@ -78,6 +79,7 @@ export default function EditStudentPage() {
         enrollment_date: student.enrollment_date || '',
         program: student.program || '',
         year_level: student.year_level || '',
+        current_semester: student.current_semester || '',
         gpa: student.gpa || '',
         gpa_scale: detectedScale
       })
@@ -431,6 +433,28 @@ export default function EditStudentPage() {
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Current Semester
+                </label>
+                <div className="relative">
+                  <BookOpen className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <input
+                    type="text"
+                    name="current_semester"
+                    value={formData.current_semester}
+                    onChange={handleChange}
+                    placeholder="e.g., Fall 2024, Spring 2025"
+                    className={`w-full pl-11 pr-4 py-3 bg-slate-700 border rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent ${errors.current_semester ? 'border-red-500' : 'border-slate-600'}`}
+                  />
+                </div>
+                {errors.current_semester && (
+                  <p className="text-red-400 text-sm mt-1">{errors.current_semester}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
                   GPA Scale
                 </label>
                 <select
@@ -443,26 +467,26 @@ export default function EditStudentPage() {
                   <option value="indian">Indian System (0 - 10.0)</option>
                 </select>
               </div>
-            </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                GPA (0 - {getMaxGPA()})
-              </label>
-              <input
-                type="number"
-                name="gpa"
-                value={formData.gpa}
-                onChange={handleChange}
-                step="0.01"
-                min="0"
-                max={getMaxGPA()}
-                placeholder={`Enter GPA (0 - ${getMaxGPA()})`}
-                className={`w-full md:w-1/2 px-4 py-3 bg-slate-700 border rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent ${errors.gpa ? 'border-red-500' : 'border-slate-600'}`}
-              />
-              {errors.gpa && (
-                <p className="text-red-400 text-sm mt-1">{errors.gpa}</p>
-              )}
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  GPA (0 - {getMaxGPA()})
+                </label>
+                <input
+                  type="number"
+                  name="gpa"
+                  value={formData.gpa}
+                  onChange={handleChange}
+                  step="0.01"
+                  min="0"
+                  max={getMaxGPA()}
+                  placeholder={`Enter GPA (0 - ${getMaxGPA()})`}
+                  className={`w-full px-4 py-3 bg-slate-700 border rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent ${errors.gpa ? 'border-red-500' : 'border-slate-600'}`}
+                />
+                {errors.gpa && (
+                  <p className="text-red-400 text-sm mt-1">{errors.gpa}</p>
+                )}
+              </div>
             </div>
 
             <div>
